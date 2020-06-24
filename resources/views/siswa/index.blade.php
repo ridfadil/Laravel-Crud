@@ -1,13 +1,6 @@
+@extends('layout.master')
+@section('contain')
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Belajar Laravel</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    </head>
-    <body>
-
-        <div class="container">
             @if(session('sukses'))
             <div class="alert alert-primary" role="alert">
                 {{session('sukses')}}
@@ -33,24 +26,24 @@
                                 <th> Jenis Kelamin </th>
                                 <th> Agama </th>
                                 <th> Alamat </th>
+                                <th> Aksi </th>
                             </tr>
                             @foreach ($data_siswa as $siswa)
                             <tr>
-                                <td> {{$siswa->Nama_depan}}</td>
+                                <td> {{$siswa->nama_depan}}</td>
                                 <td>{{$siswa->nama_belakang}}</td>
                                 <td>{{$siswa->jenis_kelamin}}</td>
                                 <td> {{$siswa->agama}} </td>
                                 <td> {{$siswa->alamat}} </td>
+                                <td>
+                                    <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="/siswa/{{$siswa->id}}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda ingin menghapus data?')">Hapus</a>
+                                </td>
                             </tr>
                             @endforeach
                         </table>
             </div>
         </div>
-
-        {{-- java Script --}}
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -94,7 +87,6 @@
                             <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                           </div>
 
-
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -103,7 +95,5 @@
                     </div>
             </div>
             </div>
-        </div>
-    </body>
-</html>
+@endsection
 

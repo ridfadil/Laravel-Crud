@@ -19,5 +19,26 @@ class SiswaController extends Controller
         return redirect('/siswa')->with('sukses', 'Data Berhasil diinput');
         // return $request->all();
     }
+
+    public function edit($id)
+    {
+        $siswa = \App\Siswa::find($id);
+        // dd($siswa);
+        return view('/siswa/edit', ['siswa' => $siswa]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $siswa = \App\Siswa::find($id);
+        $siswa->update($request->all());
+        return redirect('/siswa')->with('sukses', 'Data Berhasil Di Update');
+    }
+
+    public function delete($id)
+    {
+        $siswa = \App\Siswa::find($id);
+        $siswa->delete($siswa);
+        return redirect('/siswa')->with('sukses', 'Data Berhasil Di Hapus');
+    }
     //
 }
